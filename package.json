@@ -1,0 +1,54 @@
+{
+  "name": "nativescript-hook-environment-filter",
+  "version": "0.0.1",
+  "description": "Hook for selecting files based on DTAP environment build for NativeScript Apps",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "node postinstall.js",
+    "preuninstall": "node preuninstall.js",
+    "demo.ios": "npm run preparedemo && cd demo && ENV=tst tns emulate ios --log trace",
+    "demo.android": "npm run preparedemo && cd demo && tns run android",
+    "debug.ios": "npm run preparedemo && cd demo && tns debug ios --emulator",
+    "debug.android": "npm run preparedemo && cd demo && tns debug android --emulator",
+    "preparedemo": "cd demo && tns plugin remove nativescript-hook-environment-filter && tns plugin add .. && tns install",
+    "resetdemo": "cd demo && tns plugin remove nativescript-hook-environment-filter && tns plugin add .. && tns prepare android && tns prepare ios && cd ..",
+    "afterprepare": "cd demo && tns prepare android && tns prepare ios && cd ..",
+    "setup": "cd demo && npm install && tns plugin add .. && cd .."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Essent/nativescript-hook-environment-filter.git"
+  },
+  "keywords": [
+    "nativescript",
+    "nativescript-hook"
+  ],
+  "author": {
+    "name": "Henk Bakker",
+    "email": "henk.bakker@essent.nl",
+    "url": "https://github.com/Essent"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Essent/nativescript-hook-environment-filter/issues"
+  },
+  "homepage": "https://github.com/Essent/nativescript-hook-environment-filter#readme",
+  "nativescript": {
+    "hooks": [
+      {
+        "type": "after-prepare",
+        "script": "lib/after-prepare.js",
+        "inject": true
+      }
+    ]
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "dependencies": {
+    "glob": "^7.1.1",
+    "glob-promise": "^3.1.0",
+    "mz": "^2.6.0",
+    "nativescript-hook": "^0.2.1"
+  }
+}
