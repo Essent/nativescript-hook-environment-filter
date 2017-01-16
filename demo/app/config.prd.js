@@ -1,0 +1,3 @@
+module.export = {
+	env: 'prd'
+}
